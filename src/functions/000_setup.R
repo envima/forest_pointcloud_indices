@@ -18,10 +18,13 @@ libs <- c("lidR", "tidyverse", "raster", "sf", "mapview", "viridis", "vegan")
 # Load libraries and create environment object to be used in other scripts for path navigation
 project_folders <- list.dirs(path = root_folder, full.names = FALSE, recursive = TRUE)
 project_folders <- project_folders[!grepl("\\..", project_folders)]
-envrmt <- createEnvi(
+envrmt = createEnvi(
   root_folder = root_folder, fcts_folder = file.path(root_folder, "src/functions/"),  folders = project_folders,
   libs = libs, create_folders = FALSE)
 meta <- createMeta(root_folder)
+rm(libs)
+rm(project_folders)
+rm(envrmt)
 
 # Define more variables
 
