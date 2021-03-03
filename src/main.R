@@ -23,10 +23,13 @@ e = c(477740, 477940, 5632160, 5632360)
 outpath = "data/level1/normalized_pointclouds"
 dir.create(outpath)
 
+mof_dem = raster("data/imports/mof_dem_01m.tif")
+
+
 list.files("data/level0/pointclouds/", full.names = TRUE) %>%
   map(function(f){
     pc = readLAS(f)
-    pc = normalizePC(pc)
+    pc = normalizePC(pc, dem = mof_dem)
     writeLAS(pc, file.path(outpath, basename(f)))
   })
 
@@ -34,8 +37,22 @@ list.files("data/level0/pointclouds/", full.names = TRUE) %>%
 # calculate indices ----
 # create grids and calculate indices, save in results
 
-res = c(1,2,4,5,8,10)
-source("src/020_calculate_indices.R")
+
+
+# calculate bakx1 indices
+list.files("data/level1/normalized_pointclouds/", full.names = TRUE) %>%
+  map(function(x) calculateIndices(pc_file = x, indices = ~bakx1(z = Z, rn = ReturnNumber)))
+
+# calculate chm voxel based indices
+
+list.files("data/level1/normalized_pointclouds/", full.names = TRUE) %>%
+  map(function(x) calculateIndices(pc_file = x, indices = ~chmMetrics(z = Z)))
+
+
+
+
+
+
 
 
 # calculate heterogenity ----
