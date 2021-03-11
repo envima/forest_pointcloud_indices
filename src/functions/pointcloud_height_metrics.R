@@ -16,7 +16,7 @@ metrics = function(z){
 bakx1 = function(z, rn){
 
   perc95 = quantile(z, .95)
-  perc02 = quantile(z, .1)
+  perc02 = quantile(z, .2)
 
   return(
     list(

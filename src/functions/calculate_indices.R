@@ -31,12 +31,10 @@ calculateIndices = function(pc_file, indices, resolutions = c(1,2,4,5,8,10)){
     outfile = file.path(outdir2, paste0(pc_name, "_", str_pad(r, width = 2, pad = 0), "m.grd"))
 
     g = createSampleArea(sample_extent = e, resolution = r)
-    metric = lidR::grid_metrics(pc, func = indices, res = g)
-
+    metric = lidR::grid_metrics(pc, func = indices, res = g, filter = ~Z > 2)
     writeRaster(metric, outfile, overwrite = TRUE)
     return(metric)
   })
-
-
+  return(all_resolutions)
 
 }
