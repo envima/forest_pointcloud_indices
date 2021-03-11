@@ -20,7 +20,10 @@ list.files("data/results", pattern = "0[12]m.grd$", recursive = TRUE, full.names
     m  = stack(f)
     het = aggregate(m, 10, fun=sd)
     names(het) = paste0(names(het), "_sd")
-    writeRaster(het, f %>% str_replace("data/results", "data/results/heterogenity") %>% str_replace(pattern = ".grd", replacement = "_heterogenity_10m.grd"))
+    writeRaster(het, f %>%
+                  str_replace("data/results", "data/results/heterogenity") %>%
+                  str_replace(pattern = ".grd", replacement = "_heterogenity_10m.grd"),
+                overwrite = TRUE)
   })
 
 

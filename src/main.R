@@ -36,9 +36,6 @@ list.files("data/level0/pointclouds/", full.names = TRUE) %>%
 
 # calculate indices ----
 # create grids and calculate indices, save in results
-
-
-
 # calculate bakx1 indices
 list.files("data/level1/normalized_pointclouds/", full.names = TRUE) %>%
   map(function(x) calculateIndices(pc_file = x, indices = ~bakx1(z = Z, rn = ReturnNumber)))
@@ -46,12 +43,10 @@ list.files("data/level1/normalized_pointclouds/", full.names = TRUE) %>%
 # calculate chm voxel based indices
 
 list.files("data/level1/normalized_pointclouds/", full.names = TRUE) %>%
-  map(function(x) calculateIndices(pc_file = x, indices = ~chmMetrics(z = Z)))
+  map(function(x) calculateIndices(pc_file = x, indices = ~zVoxel(z = Z)))
 
-
-
-
-
+list.files("data/level1/normalized_pointclouds/", full.names = TRUE) %>%
+  map(function(x) calculateIndices(pc_file = x, indices = ~nVoxel(z = Z)))
 
 
 
