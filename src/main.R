@@ -54,3 +54,17 @@ list.files("data/level1/normalized_pointclouds/", full.names = TRUE) %>%
 # use 1m indices as basis for 10m heterogenity
 source("src/030_calculate_heterogenity.R")
 
+
+
+# rerun run with combined pointclouds
+if(FALSE) source("src/011_combine_pointclouds.R")
+
+list.files("data/level1/combined_pointclouds/", full.names = TRUE) %>%
+  map(function(x) calculateIndices(pc_file = x, indices = ~bakx1(z = Z, rn = ReturnNumber)))
+
+list.files("data/level1/combined_pointclouds/", full.names = TRUE) %>%
+  map(function(x) calculateIndices(pc_file = x, indices = ~zVoxel(z = Z)))
+
+list.files("data/level1/combined_pointclouds/", full.names = TRUE) %>%
+  map(function(x) calculateIndices(pc_file = x, indices = ~nVoxel(z = Z)))
+
