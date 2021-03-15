@@ -15,6 +15,6 @@ pccombs = rbind(pc3, pc4, pc5)
 pccombs = decimate_points(pccombs, algorithm = homogenize(50, 1))
 
 dir.create("data/level1/combined_pointclouds")
-writeLAS(pccomb, "data/level1/combined_pointclouds/fall_densecloud.laz")
-writeLAS(pccombs, "data/level1/combined_pointclouds/spring_densecloud.laz")
+writeLAS(pccomb, "data/level1/combined_pointclouds/2020_fall_multi_densecloud.laz")
+writeLAS(pccombs, "data/level1/combined_pointclouds/2020_spring_multi_densecloud.laz")
 

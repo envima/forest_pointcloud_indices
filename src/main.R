@@ -68,3 +68,4 @@ list.files("data/level1/combined_pointclouds/", full.names = TRUE) %>%
 list.files("data/level1/combined_pointclouds/", full.names = TRUE) %>%
   map(function(x) calculateIndices(pc_file = x, indices = ~nVoxel(z = Z)))
 
+source("src/030_calculate_heterogenity.R")
